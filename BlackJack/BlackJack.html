@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <title>Blackjack or 21</title>
+    <link type="text/css" rel="stylesheet" href="BlackJack.css">
+    <script src="JQuery/jquery-2.1.1 (1).js"></script>
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="Blackjack.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.css">
+    <script>
+    $(function() {
+        $("#tabs").tabs();
+    });
+    $(document).ready(function() {
+        $('#play').click(function() {
+            reset();
+            document.getElementById("wallets").innerHTML = "Wallet Amount: " + wallet;
+            makeDeck();
+            dealCards();
+            var dealercard = '';
+            $.each(dealerHand, function(index, value) {
+                if (index === 0)
+                    dealercard += "<img src = \'" + value.url + "\''>";
+                else
+                    dealercard += "<img src = \'" + "images/BackVertical.png" + "\''>";
+            });
+            var playerCard = "";
+            $.each(playerHand, function(index, value) {
+                playerCard += "<img src = \'" + value.url + "\''>";
+            });
+            $('#dealerCards').html(dealercard);
+            $('#playerCards').html(playerCard);
+            $('#play').hide();
+            document.getElementById('CurrentScore').innerHTML = "Player score is: " + playerHandValue;
+        });
+        $("#hit").click(function() {
+            hit(playerHand);
+            var playerCard = "";
+            $.each(playerHand, function(index, value) {
+                playerCard += "<img src = \'" + value.url + "\''>";
+            });
+            $('#playerCards').html(playerCard);
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div id="playingfield">
+        <div id="dealerCards"></div>
+        <div id="playerCards"></div>
+    </div>
+    <div id="tabs">
+        <ul>
+            <li><a href="#Main">Main Page</a>
+            </li>
+            <li><a href="#Bet">Bet</a>
+            </li>
+            <li><a href="#stuff">Moves</a>
+            </li>
+        </ul>
+        <div id="Main">
+            <p>Welcome to this blackjack simulator thing. Press play when you want to start playing</p>
+            <button type="button" id="play" onclick="play">play</button>
+        </div>
+        <div id="Bet">
+            <p id="wallets">Wallet Amount: 0</p>
+            <input type="text" name="bet" id="betAmount">
+            <button type="button" id="bet" onclick="javascript:betNow()">bet</button>
+            <p id="amountBet">Amount Bet: 0</p>
+        </div>
+        <div id="Stuff">
+            <p id="CurrentScore">Player Score is: 0</p>
+            <p id="CurrentDealerScore">Dealer Score is: ?</p>
+            <p id="place">Press a button</p>
+            <button type="button" id="hit">hit</button>
+            <button type="button" id="stay" onclick="javascript:stay()">stay</button>
+            <button type="button" id="doubleDown" onclick="javascript:doubleDown()">Double Down</button>
+        </div>
+    </div>
+</body>
+
+</html>
