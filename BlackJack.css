@@ -33,6 +33,19 @@ button:active {
     border: 5px;
     border-style: dashed;
 }
+
 body{
     background-color:#3B871C;
+}
+
+#dealerCards{
+   display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#playerCards{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

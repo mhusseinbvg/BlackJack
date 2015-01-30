@@ -15,12 +15,6 @@ var dealerNumAces = 0;
 var bet = 0;
 var wallet = 500;
 
-function game() {
-    var notDone = true;
-    while (notDone) {
-        // play games? I'll ask aaron about this tommorow
-    }
-}
 
 function card(suit, cardvalue) {
     this.suit = suit;
@@ -102,7 +96,7 @@ function calculatePlayerScore() {
             playerHandValue += parseInt(playerHand[t].cardvalue);
         }
     }
-    calculateAces(playerNumAces);
+    calculatePlayerAces(playerNumAces);
 }
 
 function claculateDealerScore() {
@@ -120,21 +114,23 @@ function claculateDealerScore() {
         else
             dealerHandValue += parseInt(dealerHand[t].cardvalue);
     }
-    calculateAces(dealerNumAces);
+    calculateDealerAces(dealerNumAces);
 }
 
-function calculatePlayerAces(numAces) { // doesn't work just yet but i'll get it to work soon enough
-    if (numAces === numAcesPlayer) {
-        for (var a = 0; a < numAcesPlayer; a++) {
-            if (playerHandValue + 10 < 21) {
-                playerHandValue += 10;
-            }
+function calculatePlayerAces() { // doesn't work just yet but i'll get it to work soon enough
+
+    for (var a = 0; a < numAcesPlayer; a++) {
+        if (playerHandValue + 10 < 21) {
+            playerHandValue += 10;
+
         }
-    } else {
-        for (var b = 0; b < numAcesDealer; b++) {
-            if (DealerHandValue + 10 < 21) {
-                DealerHandValue += 10;
-            }
+    }
+}
+
+function calculateDealerAces() {
+    for (var b = 0; b < numAcesDealer; b++) {
+        if (DealerHandValue + 10 < 21) {
+            DealerHandValue += 10;
         }
     }
 }
